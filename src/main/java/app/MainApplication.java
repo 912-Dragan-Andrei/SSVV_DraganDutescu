@@ -24,7 +24,7 @@ public class MainApplication {
         String filenameTema = "fisiere/Teme.xml";
         String filenameNota = "fisiere/Note.xml";
 
-       //StudentFileRepository studentFileRepository = new StudentFileRepository(filenameStudent);
+        //StudentFileRepository studentFileRepository = new StudentFileRepository(filenameStudent);
         //TemaFileRepository temaFileRepository = new TemaFileRepository(filenameTema);
         //NotaValidator notaValidator = new NotaValidator(studentFileRepository, temaFileRepository);
         //NotaFileRepository notaFileRepository = new NotaFileRepository(filenameNota);

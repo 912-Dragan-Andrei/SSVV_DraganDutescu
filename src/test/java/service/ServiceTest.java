@@ -8,6 +8,7 @@ import repository.TemaXMLRepo;
 import validation.NotaValidator;
 import validation.StudentValidator;
 import validation.TemaValidator;
+import validation.ValidationException;
 
 import java.io.FileWriter;
 import java.util.Objects;
@@ -35,33 +36,129 @@ class ServiceTest {
     }
 
     @Test
-    void addStudentEc1() {
-        int uuid = (int) (Math.random() * 10000000);
+    void addStudentWithValidData() {
 
-        Student student = new Student(Integer.toString(uuid), "Andrei", 932, "email@yahoo.com");
-        Student result = service.addStudent(student);
+        Student student = new Student("newID1323D", "Andrei", 1, "email.com");
 
-        try {
-            assert(Objects.equals(student.toString(), result.toString()));
-        } catch (Exception e) {
-            // for the moment, this is what we expect to happen
-            assert(true);
-        }
 
+        assertDoesNotThrow(() -> {
+            Student result = service.addStudent(student);
+            assertEquals(student, result);
+        });
     }
 
     @Test
-    void addStudentEc2() {
-        int uuid = (int) (Math.random() * 10000000);
+    void addStudentWithEmptyName() {
 
-        Student student = new Student(Integer.toString(uuid), "", 932, "email@yahoo.com");
-        try {
+        Student student = new Student("anothe33rIDD", "", 1, "email.com");
+
+
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
             Student result = service.addStudent(student);
-            assert(false);
-        } catch (Exception e) {
-            assert(true);
-        }
+        });
+        assertEquals("Nume incorect!", exception.getMessage());
+    }
+
+    @Test
+    void addStudentWithEmptyID() {
+
+        Student student = new Student("", "Andrei", 1, "email.com");
+
+
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
+            Student result = service.addStudent(student);
+        });
+        assertEquals("Id incorect!", exception.getMessage());
+    }
+
+    @Test
+    void addStudentWithExistingID() {
+
+        Student student = new Student("uniq12ueID", "Andrei", 1, "email.com");
+
+
+        assertNull(service.addStudent(student));
+    }
+
+    @Test
+    void addStudentWithEmptyEmail() {
+
+        Student student = new Student("uniqu332esID", "Andrei", 1, "");
+
+
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
+            Student result = service.addStudent(student);
+        });
+        assertEquals("Email incorect!", exception.getMessage());
+    }
+
+    @Test
+    void addStudentWithNegativeGroup() {
+
+        Student student = new Student("uniqu123eIeD", "Andrei", -1, "email.com");
+
+
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
+            Student result = service.addStudent(student);
+        });
+        assertEquals("Grupa incorecta!", exception.getMessage());
+    }
+
+
+
+    @Test
+    void addStudentWithMaxIntGroupPlusOne() {
+
+        long maxIntPlusOneGroup = (long) Integer.MAX_VALUE + 1;
+        int invalidGroup = (int) maxIntPlusOneGroup;
+        Student student = new Student("uniq4u3eID", "Andrei", invalidGroup, "email.com");
+
+
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
+            Student result = service.addStudent(student);
+        });
+        assertEquals("Grupa incorecta!", exception.getMessage());
+    }
+
+    @Test
+    void addStudentWithGroupZero() {
+
+        Student student = new Student("uniq3uee3eeID", "Andrei", 0, "email.com");
+
+
+        assertDoesNotThrow(() -> {
+            Student result = service.addStudent(student);
+            assertEquals(student, result);
+        });
+    }
+
+    @Test
+    void addStudentWithMaxIntGroup() {
+
+        Student student = new Student("unique3233ID", "Andrei", Integer.MAX_VALUE, "email.com");
+
+
+        assertDoesNotThrow(() -> {
+            Student result = service.addStudent(student);
+            assertEquals(student, result);
+        });
+    }
+
+    @Test
+    void addStudentWithMaxIntMinusOneGroup() {
+
+        Student student = new Student("uniquw33eeID", "Andrei", Integer.MAX_VALUE - 1, "email.com");
+
+
+        assertDoesNotThrow(() -> {
+            Student result = service.addStudent(student);
+            assertEquals(student, result);
+        });
     }
 
 
 }
+
+
+
+
