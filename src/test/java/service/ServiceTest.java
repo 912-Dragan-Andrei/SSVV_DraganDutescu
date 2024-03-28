@@ -12,6 +12,7 @@ import validation.ValidationException;
 
 import java.io.FileWriter;
 import java.util.Objects;
+import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -37,8 +38,8 @@ class ServiceTest {
 
     @Test
     void addStudentWithValidData() {
-
-        Student student = new Student("newID1323D", "Andrei", 1, "email.com");
+        String id = generateUniqueID();
+        Student student = new Student(id, "Andrei", 1, "email.com");
 
 
         assertDoesNotThrow(() -> {
@@ -49,8 +50,8 @@ class ServiceTest {
 
     @Test
     void addStudentWithEmptyName() {
-
-        Student student = new Student("anothe33rIDD", "", 1, "email.com");
+        String id = generateUniqueID();
+        Student student = new Student(id, "", 1, "email.com");
 
 
         ValidationException exception = assertThrows(ValidationException.class, () -> {
@@ -73,17 +74,17 @@ class ServiceTest {
 
     @Test
     void addStudentWithExistingID() {
-
-        Student student = new Student("uniq12ueID", "Andrei", 1, "email.com");
-
+        String id = generateUniqueID();
+        Student student = new Student(id, "Andrei", 1, "email.com");
+        service.addStudent(student);
 
         assertNull(service.addStudent(student));
     }
 
     @Test
     void addStudentWithEmptyEmail() {
-
-        Student student = new Student("uniqu332esID", "Andrei", 1, "");
+        String id = generateUniqueID();
+        Student student = new Student(id, "Andrei", 1, "");
 
 
         ValidationException exception = assertThrows(ValidationException.class, () -> {
@@ -94,8 +95,8 @@ class ServiceTest {
 
     @Test
     void addStudentWithNegativeGroup() {
-
-        Student student = new Student("uniqu123eIeD", "Andrei", -1, "email.com");
+        String id = generateUniqueID();
+        Student student = new Student(id, "Andrei", -1, "email.com");
 
 
         ValidationException exception = assertThrows(ValidationException.class, () -> {
@@ -108,10 +109,10 @@ class ServiceTest {
 
     @Test
     void addStudentWithMaxIntGroupPlusOne() {
-
+        String id = generateUniqueID();
         long maxIntPlusOneGroup = (long) Integer.MAX_VALUE + 1;
         int invalidGroup = (int) maxIntPlusOneGroup;
-        Student student = new Student("uniq4u3eID", "Andrei", invalidGroup, "email.com");
+        Student student = new Student(id, "Andrei", invalidGroup, "email.com");
 
 
         ValidationException exception = assertThrows(ValidationException.class, () -> {
@@ -122,8 +123,8 @@ class ServiceTest {
 
     @Test
     void addStudentWithGroupZero() {
-
-        Student student = new Student("uniq3uee3eeID", "Andrei", 0, "email.com");
+        String id = generateUniqueID();
+        Student student = new Student(id, "Andrei", 0, "email.com");
 
 
         assertDoesNotThrow(() -> {
@@ -134,8 +135,8 @@ class ServiceTest {
 
     @Test
     void addStudentWithMaxIntGroup() {
-
-        Student student = new Student("unique3233ID", "Andrei", Integer.MAX_VALUE, "email.com");
+        String id = generateUniqueID();
+        Student student = new Student(id, "Andrei", Integer.MAX_VALUE, "email.com");
 
 
         assertDoesNotThrow(() -> {
@@ -146,14 +147,18 @@ class ServiceTest {
 
     @Test
     void addStudentWithMaxIntMinusOneGroup() {
-
-        Student student = new Student("uniquw33eeID", "Andrei", Integer.MAX_VALUE - 1, "email.com");
+        String id = generateUniqueID();
+        Student student = new Student(id, "Andrei", Integer.MAX_VALUE - 1, "email.com");
 
 
         assertDoesNotThrow(() -> {
             Student result = service.addStudent(student);
             assertEquals(student, result);
         });
+    }
+
+    private String generateUniqueID() {
+        return UUID.randomUUID().toString();
     }
 
 
