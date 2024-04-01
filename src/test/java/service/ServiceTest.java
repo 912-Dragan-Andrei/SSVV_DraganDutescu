@@ -1,6 +1,7 @@
 package service;
 
 import domain.Student;
+import domain.Tema;
 import org.junit.jupiter.api.Test;
 import repository.NotaXMLRepo;
 import repository.StudentXMLRepo;
@@ -156,6 +157,61 @@ class ServiceTest {
             assertEquals(student, result);
         });
     }
+
+    @Test
+    void testAddTemaWithInvalidNrTema() {
+        Tema tema = new Tema("", "", 0, 0);
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
+            service.addTema(tema);
+        });
+        assertEquals("Numar tema invalid!", exception.getMessage());
+    }
+
+    @Test
+    void testAddTemaWithInvalidDescriere() {
+        String id = generateUniqueID();
+        Tema tema = new Tema(id, "", 0, 0);
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
+            service.addTema(tema);
+        });
+        assertEquals("Descriere invalida!", exception.getMessage());
+    }
+
+    @Test
+    void testAddTemaWithInvalidDeadline() {
+        String id = generateUniqueID();
+        Tema tema = new Tema(id, "descriere", 0, 0);
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
+            service.addTema(tema);
+        });
+        assertEquals("Deadlineul trebuie sa fie intre 1-14.", exception.getMessage());
+    }
+
+    @Test
+    void testAddTemaWithInvalidPrimire() {
+        String id = generateUniqueID();
+        Tema tema = new Tema(id, "descriere", 3, 0);
+        ValidationException exception = assertThrows(ValidationException.class, () -> {
+            service.addTema(tema);
+        });
+        assertEquals("Saptamana primirii trebuie sa fie intre 1-14.", exception.getMessage());
+    }
+
+    @Test
+    void testAddTema() throws ValidationException {
+        String id = generateUniqueID();
+        Tema tema = new Tema(id, "descriere", 3, 2);
+
+        assertDoesNotThrow(() -> {
+            Tema result = service.addTema(tema);
+            assertEquals(tema, result);
+        });
+    }
+
+
+
+
+
 
     private String generateUniqueID() {
         return UUID.randomUUID().toString();
