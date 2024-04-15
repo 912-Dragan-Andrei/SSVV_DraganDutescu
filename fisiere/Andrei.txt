@@ -1,0 +1,30 @@
+
+Tema: 0e43470e-ac03-4d1f-9bda-fa95018d288c
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 2065165c-ec8d-4b53-930c-1903ba752478
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 0ee9fa91-624e-4d1a-b157-375960b45c56
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 05f7d9c0-f03f-46e0-8d58-38facae9f3d8
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 83e3ecf8-010d-414b-bcb7-557917b3c3df
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback

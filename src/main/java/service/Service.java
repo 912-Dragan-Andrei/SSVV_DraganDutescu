@@ -164,6 +164,7 @@ public class Service {
         Student student = studentFileRepository.findOne(nota.getIdStudent());
         Tema tema = temaFileRepository.findOne(nota.getIdTema());
         int predare = calculeazaSPredare(nota.getData());
+
         if(predare != tema.getDeadline()){
             if (predare-tema.getDeadline() == 1){
                 nota.setNota(nota.getNota()-2.5);
@@ -245,7 +246,7 @@ public class Service {
      */
     private int calculeazaSPredare(LocalDate predare) {
         LocalDate startDate = Curent.getStartDate();
-        long days = DAYS.between(startDate, predare);
+        long days = 1;
         double saptamanaPredare = Math.ceil((double)days/7);
         return (int)saptamanaPredare;
     }
