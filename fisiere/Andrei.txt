@@ -28,3 +28,39 @@ Nota: 10.0
 Predata in saptamana: 1
 Deadline: 1
 Feedback: feedback
+
+Tema: b1639059-64a9-45b5-a634-464358f49071
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: c33ab20a-4c0b-46f3-a309-fc6f9cd159b7
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 4818bc59-308a-40e5-b53c-7d24508e4b57
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: f7c0b81f-eec5-4ed3-a5a9-1f1fafeb2fe9
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: ed5efc20-e168-4a77-b4b3-b4f9ae59c31c
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 6cc2a287-fee1-4b9d-bddf-56271d39052f
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
