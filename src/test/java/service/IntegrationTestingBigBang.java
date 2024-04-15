@@ -22,9 +22,9 @@ import java.util.UUID;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-class IntegrationTesting {
+class IntegrationTestingBigBang {
     private Service service;
-    public IntegrationTesting()
+    public IntegrationTestingBigBang()
     {
         StudentValidator studentValidator = new StudentValidator();
         TemaValidator temaValidator = new TemaValidator();
