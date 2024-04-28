@@ -21,6 +21,80 @@ import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+class IntegrationTestingIncremental {
+    private Service service;
+    private String studentId;
+    private String assignmentId;
+
+    public IntegrationTestingIncremental() {
+        StudentValidator studentValidator = new StudentValidator();
+        TemaValidator temaValidator = new TemaValidator();
+        String filenameStudent = "fisiere/Studenti.xml";
+        String filenameTema = "fisiere/Teme.xml";
+        String filenameNota = "fisiere/Note.xml";
+        StudentXMLRepo studentXMLRepository = new StudentXMLRepo(filenameStudent);
+        TemaXMLRepo temaXMLRepository = new TemaXMLRepo(filenameTema);
+        NotaValidator notaValidator = new NotaValidator(studentXMLRepository, temaXMLRepository);
+        NotaXMLRepo notaXMLRepository = new NotaXMLRepo(filenameNota);
+        this.service = new Service(studentXMLRepository, studentValidator, temaXMLRepository, temaValidator, notaXMLRepository, notaValidator);
+
+    }
+
+    private String generateUniqueID() {
+        return UUID.randomUUID().toString();
+    }
+
+    @Test
+    void testAddStudentIncremental() {
+        String id = generateUniqueID();
+        Student student = new Student(id, "Andrei", 1, "email.com");
+
+        assertDoesNotThrow(() -> {
+            Student result = service.addStudent(student);
+            assertEquals(student, result);
+        });
+
+        studentId = id;
+    }
+
+    @Test
+    void testAddAssignmentIncremental() throws ValidationException {
+        testAddStudentIncremental();
+
+        String id = generateUniqueID();
+        Tema tema = new Tema(id, "descriere", 1, 2);
+
+        assertDoesNotThrow(() -> {
+            Tema result = service.addTema(tema);
+            assertEquals(tema, result);
+        });
+
+        assignmentId = id;
+
+    }
+
+    @Test
+    void testAddGradeIncremental() throws ValidationException {
+        testAddAssignmentIncremental();
+
+
+        String id = generateUniqueID();
+        String data = "2024-01-01";
+        String[] date = data.split("-");
+
+        LocalDate dataPredare = LocalDate.of(Integer.parseInt(date[0]), Integer.parseInt(date[1]), Integer.parseInt(date[2]));
+        Nota notaCatalog = new Nota(id, studentId, assignmentId, 10, dataPredare);
+
+        assertDoesNotThrow(() -> {
+            double result = service.addNota(notaCatalog, "feedback");
+            assertEquals(notaCatalog.getNota(), result);
+        });
+    }
+
+
+}
+
+
 class IntegrationTestingBigBang  {
     private Service service;
     public IntegrationTestingBigBang()

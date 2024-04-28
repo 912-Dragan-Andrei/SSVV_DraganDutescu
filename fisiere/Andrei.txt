@@ -64,3 +64,63 @@ Nota: 10.0
 Predata in saptamana: 1
 Deadline: 1
 Feedback: feedback
+
+Tema: f5a8fec0-00c6-482a-a480-fa6ba95be417
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: df828864-9c60-4e44-817e-6fd2a42e214b
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 86705a09-0431-4ab0-9e5a-4c82b93da335
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: Studentul nu mai poate preda aceasta tema!
+
+Tema: c8759a55-1f03-4a3c-a8c6-58140fedb3a5
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: d7eb0d7f-a84c-47c0-aabe-a82304d3900b
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 41a37c91-228a-46af-8b62-767bd4068b42
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 0101eded-5cf4-48e9-953d-6a056a03d340
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 253550c7-44e8-4dc1-8cd6-543c78ee6746
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 4c83d185-2a28-431e-baa5-ea802aef6744
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
+
+Tema: 09b2a5ae-5304-4ba3-96c1-7f27b09ebb68
+Nota: 10.0
+Predata in saptamana: 1
+Deadline: 1
+Feedback: feedback
